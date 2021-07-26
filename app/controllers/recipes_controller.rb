@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
     def new
         @recipe = Recipe.new
+        @ingredients = Ingredient.all
     end
 
     def show
@@ -12,7 +13,7 @@ class RecipesController < ApplicationController
     end
     
     def create 
-        byebug
+        # byebug
         @recipe = Recipe.new(recipe_params)
         if @recipe.save
          redirect_to recipe_path(@recipe)
@@ -36,6 +37,6 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:name, :ingredients_ids => [])
+        params.require(:recipe).permit(:name, :ingredient_ids => [], ingredients_attributes:[:name])
     end
 end
