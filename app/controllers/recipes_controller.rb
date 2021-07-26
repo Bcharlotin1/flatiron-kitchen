@@ -10,6 +10,7 @@ class RecipesController < ApplicationController
 
     def edit
         @recipe = Recipe.find_by_id(params[:id])
+        @ingredients = Ingredient.all
     end
     
     def create 
